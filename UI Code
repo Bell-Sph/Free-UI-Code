@@ -1,0 +1,62 @@
+using BepInEx;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace SolorUI
+{
+    [BepInPlugin("Solar.gg", "Solar", "1.0.0")]
+    public class Plugin : BaseUnityPlugin
+    {
+        private bool showPage1 = false;
+        private bool showPage2 = false;
+        private bool showPage3 = false;
+        private bool showPage4 = false;
+        private bool Mosa = false;
+        private bool Coke = false;
+        private Rect windowRect = new Rect(100, 100, 500, 300);
+
+        void OnGUI()
+        {
+            GUI.skin.label.normal.textColor = Color.white;
+            GUI.skin.toggle.normal.textColor = Color.white;
+            GUI.backgroundColor = new Color(0.1f, 0.1f, 0.1f, 0.9f);
+            windowRect = GUI.Window(0, windowRect, DoMyWindow, "Free UI");
+        }
+
+        void DoMyWindow(int windowID)
+        {
+            GUILayout.Label("<b><size=20>Made By | <color=#FF00FFFF>Bell</color></size></b>");
+
+            showPage1 = GUI.Toggle(new Rect(10, 40, 100, 20), showPage1, "Speed Tab");
+          // copy this adn make as manymore as you want
+
+            // Speed Cheats
+            if (showPage1)
+            {
+                GUI.Label(new Rect(10, 160, 100, 20), "<color=#FF00FFFF>Mosa Speed</color>");
+                Mosa = GUI.Toggle(new Rect(10, 190, 100, 20), Mosa, "Enable");
+                if (Mosa)
+                {
+                    // Apply speed changes
+                }
+                else
+                {
+                    // Revert speed changes
+                }
+
+                GUI.Label(new Rect(150, 160, 100, 20), "<color=#FF00FFFF>Coke Speed</color>");
+                Coke = GUI.Toggle(new Rect(150, 190, 100, 20), Coke, "Enable");
+                if (Coke)
+                {
+                    // Apply speed changes
+                }
+                else
+                {
+                    // Revert speed changes
+                }
+            }
+
+            GUI.DragWindow(new Rect(0, 0, 10000, 20));
+        }
+    }
+}
